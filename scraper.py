@@ -9,10 +9,15 @@ import time
 logging.basicConfig(filename='scraping.log', level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
+# Define the headers to mimic a real browser
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+}
+
 def scrape_website(url):
     try:
-        # Send a GET request to the website
-        response = requests.get(url, timeout=10)
+        # Send a GET request to the website with headers
+        response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()  # Check for HTTP errors
 
         # Parse the HTML content
